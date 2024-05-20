@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import DetailView from '@/views/DetailView.vue'
 import OffersView from '@/views/OffersView.vue'
+import MusthaveView from '@/views/MusthaveView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,14 +19,19 @@ const router = createRouter({
       component: AboutView
     },
     {
-      path: '/users',
-      name: 'users',
+      path: '/offers',
+      name: 'offers',
       component: OffersView
     },
     {
-      path: '/users/:userId',
-      name: 'profile-detail',
+      path: '/offers/:userId',
+      name: 'detail',
       component: DetailView
+    },
+    {
+      path: '/musthave',
+      name: 'musthave',
+      component: MusthaveView
     }
   ]
 })
