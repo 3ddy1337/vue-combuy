@@ -4,15 +4,15 @@
 }
 
 @font-face {
-  font-family: 'Nico Moji';
+  font-family: "Nico Moji";
   font-weight: 100;
   font-size: 16px;
-  src: url('./fonts/nicomoji/NicoMoji-Regular.ttf') format('truetype');
+  src: url("./fonts/nicomoji/NicoMoji-Regular.ttf") format("truetype");
 }
 
 html {
   font-family: Nico Moji;
-  height: 100vh;
+  _height: 100vh;
   background: linear-gradient(
     125deg,
     rgb(209, 253, 255) 0%,
