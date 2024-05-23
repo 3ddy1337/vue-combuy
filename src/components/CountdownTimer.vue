@@ -35,8 +35,8 @@ export default {
   },
   methods: {
     calculateTimeRemaining() {
-      const now = new Date();
-      let distance = this.endDate - now;
+      const currentDate = new Date();
+      let distance = this.endDate - currentDate;
 
       if (distance < 0) {
         this.timeRemaining = {
