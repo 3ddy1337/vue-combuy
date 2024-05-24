@@ -1,25 +1,20 @@
 <template>
   <h2>ANGEBOTE</h2>
-  <!-- <ul>
-    <li v-for="product in offers" :key="product.id">
-      <span>{{ product.manufacturer + " " + product.productname }}</span>
-    </li>
-  </ul> -->
-  <!-- <li v-for="user in users" :key="user.id">
-      <span>{{ user.name }}</span> |
-      <RouterLink :to="{ name: 'detail', params: { userId: user.id } }">Offers</RouterLink>
-    </li> -->
   <div class="container" v-for="product in offers" :key="product.id">
-    <div class="card">
+    <div class="card" :class="{ inactive: isExpired(product.enddate) }">
       <div class="card-image">
-        <p>Angebot endet in:</p>
-        <CountdownTimer :startDate="startDate" :endDate="product.enddate" />
+        <template v-if="isExpired(product.enddate)">
+          <p>Angebot abgelaufen!</p>
+          <br />
+        </template>
+        <template v-else>
+          <p>Angebot endet in:</p>
+          <CountdownTimer :startDate="startDate" :endDate="product.enddate" />
+        </template>
         <img :src="product.image" alt="product image" />
       </div>
       <div class="card-content">
         <h3>{{ product.manufacturer + " " + product.productname }}</h3>
-        <!-- <p>{{ product.description }}</p> -->
-        <!-- <p>{{ product.color }}</p> -->
         <p>UVP: {{ product.retailprice }}€</p>
         <br />
         <p>
@@ -50,7 +45,6 @@
             d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"
           />
         </svg>
-        <!-- <a :href="product.url" target="_blank">Link</a> -->
       </div>
     </div>
   </div>
@@ -124,24 +118,14 @@ export default {
           enddate: new Date("2024-06-25T23:59:59"),
         },
       ],
-      // apiUrl: 'https://jsonplaceholder.typicode.com/users'
     };
   },
+  methods: {
+    isExpired(endDate) {
+      return new Date(endDate) < this.startDate;
+    },
+  },
 };
-
-// methods: {
-//   async getAllUsers() {
-//     const response = await fetch(this.apiUrl)
-//     const data = await response.json()
-
-//     this.users = data
-//   }
-// },
-
-//   created() {
-//     this.getAllUsers()
-//   }
-// }
 </script>
 
 <style scoped>
@@ -167,6 +151,18 @@ h2 {
   padding: 10px;
   text-align: center;
   margin: 10px auto;
+  position: relative;
+}
+
+.card.inactive::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 10;
 }
 
 .card-content {

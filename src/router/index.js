@@ -4,6 +4,7 @@ import AboutView from "../views/AboutView.vue";
 import DetailView from "@/views/DetailView.vue";
 import OffersView from "@/views/OffersView.vue";
 import MusthaveView from "@/views/MusthaveView.vue";
+import MusthaveInquiry from "@/views/MusthaveInquiry.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: "/musthave",
       name: "musthave",
       component: MusthaveView,
+    },
+    {
+      path: "/musthave-inquiry",
+      name: "musthave-inquiry",
+      component: MusthaveInquiry,
     },
   ],
 });

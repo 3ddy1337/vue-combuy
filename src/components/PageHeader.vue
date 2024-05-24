@@ -42,6 +42,15 @@
           >Was ist COM.BUY</RouterLink
         >
       </div>
+      <div class="link">
+        <RouterLink
+          class="router"
+          @click="toggle"
+          v-if="active"
+          to="/musthave-inquiry"
+          >Musthave Anfrage</RouterLink
+        >
+      </div>
     </nav>
   </header>
 </template>
@@ -96,6 +105,7 @@ p {
 }
 
 nav {
+  z-index: 1;
   position: absolute;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
   border-radius: 3px;
