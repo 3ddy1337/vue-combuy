@@ -74,7 +74,6 @@ export default {
 header {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
   border-radius: 3px;
-  _background-color: #f1f1f1;
   background: linear-gradient(
     125deg,
     rgb(209, 253, 255) 0%,

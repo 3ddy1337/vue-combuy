@@ -29,7 +29,8 @@
 .wrapper {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
   border-radius: 3px;
-  background: linear-gradient(
+  background-color: #f1f1f1;
+  _background: linear-gradient(
     125deg,
     rgb(209, 253, 255) 0%,
     rgba(42, 255, 251, 0.418) 40%,
@@ -48,7 +49,8 @@ form {
   margin: 10px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
   border-radius: 3px;
-  background: linear-gradient(
+  background-color: #f1f1f1;
+  _background: linear-gradient(
     125deg,
     rgb(209, 253, 255) 0%,
     rgba(42, 255, 251, 0.418) 40%,
@@ -73,11 +75,12 @@ p {
 
 label {
   margin-left: 10px;
+  padding-top: 5px;
 }
 
 input {
   width: 180px;
-  height: 21px;
+  height: 30px;
 }
 
 textarea {
