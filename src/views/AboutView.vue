@@ -1,5 +1,121 @@
 <template>
-  <h2>About</h2>
+  <h2>Über COM.BUY</h2>
+  <div>
+    <p>
+      Bei COM.BUY glauben wir daran, dass jeder Nutzer die Möglichkeit haben
+      sollte, Produkte zu den besten Konditionen zu erwerben. Unser Ziel ist es,
+      durch die Bündelung von Interessen und Kaufkraft günstige Angebote zu
+      schaffen, die für alle Beteiligten von Vorteil sind. Hier erfahren Sie,
+      wie COM.BUY funktioniert und wie Sie davon profitieren können.
+    </p>
+    <br />
+
+    <h3>Wie funktioniert COM.BUY?</h3>
+    <br />
+    <ol>
+      <li>
+        <strong>Produkterstellung durch den Nutzer</strong>: Jeder Nutzer kann
+        ein Produkt erstellen, das er haben möchte. Sobald ein Produkt erstellt
+        ist, wird es von COM.BUY geprüft und freigegeben.
+      </li>
+      <br />
+      <li>
+        <strong>Musthave Phase</strong>: Nach der Freigabe erhält das Produkt
+        den Status "Musthave". In dieser Phase sammeln wir Interessenten, die
+        das Produkt ebenfalls haben möchten. Das Produkt erhält "Likes" von
+        potenziellen Käufern, die ihr Interesse signalisieren.
+      </li>
+      <br />
+      <li>
+        <strong>Ziel-Angebot</strong>: Während der Musthave Phase holt COM.BUY
+        verschiedene Angebote ein. Auf Grundlage dieser Angebote erstellen wir
+        ein finales Ziel-Angebot.
+      </li>
+      <br />
+    </ol>
+
+    <h3>Beispiel für den Ablauf</h3>
+    <br />
+    <p><strong>Angebot von Händler A für Produkt X</strong>:</p>
+    <br />
+    <ul>
+      <li>Bei Menge 100: Preis 150€</li>
+      <li>Bei Menge 1.000: Preis 100€</li>
+      <li>Bei Menge 10.000: Preis 75€</li>
+      <li>Angebot ist 4 Wochen gültig</li>
+    </ul>
+    <br />
+    <p>
+      In der Musthave Phase kann das Produkt immer mehr Interesse gewinnen.
+      Beispielsweise kann es 3 Wochen dauern, um ein adequates Angebot
+      einzuholen. In dieser Zeit können sich bereits viele potenzielle Käufer
+      registrieren.
+    </p>
+    <br />
+
+    <p><strong>Ziel-Angebot für Endverbraucher</strong>:</p>
+    <br />
+    <ul>
+      <li>Bei Menge 100: Preis 160€</li>
+      <li>Bei Menge 1.000: Preis 110€</li>
+      <li>Bei Menge 10.000: Preis 85€</li>
+      <li>Regulärer Marktpreis für Produkt X: 199,95€</li>
+    </ul>
+    <br />
+
+    <h3>Szenarien am Ende des Ziel-Angebotes</h3>
+    <br />
+    <p><strong>Szenario 1</strong>:</p>
+    <br />
+    <ul>
+      <li>Nur 88 Leute haben gekauft.</li>
+      <li>Das Mindestziel wurde nicht erreicht.</li>
+      <li>Alle erhalten ihr Geld zurück.</li>
+    </ul>
+    <br />
+
+    <p><strong>Szenario 2</strong>:</p>
+    <br />
+    <ul>
+      <li>444 (oder mehr) Zahlungen sind eingegangen.</li>
+      <li>
+        Je nach erreichter Menge reduziert sich der Preis und alle zahlen den
+        reduzierten Preis.
+      </li>
+    </ul>
+    <br />
+
+    <h3>Regeln und Rückgaberecht</h3>
+    <br />
+    <ul>
+      <li>
+        Wenn das Mindestziel nicht erreicht wird, erhalten alle ihr Geld zurück.
+      </li>
+      <li>Von 0 bis Mindestmenge -1: Alle bekommen ihr Geld zurück.</li>
+      <li>
+        Von Mindestmenge bis nächste Stufe(1) -1: Der Mindestpreis ist zu
+        zahlen, und jeder kann jederzeit seinen Kauf stornieren und erhält sein
+        Geld zurück.
+      </li>
+      <li>
+        Ab der nächsten Stufe: Kunden, die bereits bezahlt haben, bekommen die
+        Differenz sofort zurück.
+      </li>
+      <li>
+        Ab dem 1000. Kauf ist eine Stornierung nicht mehr möglich und der
+        günstigere Preis gilt für alle weiteren Käufer.
+      </li>
+    </ul>
+    <br />
+
+    <p>
+      Mit diesem innovativen Ansatz garantiert COM.BUY, dass das Geld der
+      Interessenten jederzeit abrufbar ist, bis die Transaktion abgeschlossen
+      ist. Wir sorgen dafür, dass die gewünschte Menge verfügbar ist und der
+      gesamte Ablauf transparent und fair gestaltet ist. Profitieren Sie von den
+      besten Angeboten und der Sicherheit, die COM.BUY Ihnen bietet.
+    </p>
+  </div>
 </template>
 
 <style scoped>
@@ -15,5 +131,15 @@ h2 {
   padding: 10px;
   text-align: center;
   margin: 10px;
+}
+
+div {
+  font-family: "Exo 2";
+  color: black;
+  margin: 10px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  background-color: #f1f1f1;
+  padding: 10px;
 }
 </style>
