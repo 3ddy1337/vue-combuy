@@ -1,15 +1,15 @@
 <template>
   <h2>ANGEBOTE</h2>
   <div class="container" v-for="product in offers" :key="product.id">
-    <div class="card" :class="{ inactive: isExpired(product.enddate) }">
+    <div class="card" :class="{ inactive: isExpired(product.endDate) }">
       <div class="card-image">
-        <template v-if="isExpired(product.enddate)">
+        <template v-if="isExpired(product.endDate)">
           <p>Angebot abgelaufen!</p>
           <br />
         </template>
         <template v-else>
           <p>Angebot endet in:</p>
-          <CountdownTimer :startDate="startDate" :endDate="product.enddate" />
+          <CountdownTimer :startDate="startDate" :endDate="product.endDate" />
         </template>
         <img :src="product.image" alt="product image" />
       </div>
@@ -42,7 +42,7 @@
           viewBox="0 0 16 16"
         >
           <path
-            d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"
+            d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"
           />
         </svg>
       </div>
@@ -52,6 +52,7 @@
 
 <script>
 import CountdownTimer from "../components/CountdownTimer.vue";
+
 export default {
   components: {
     CountdownTimer,
@@ -59,70 +60,43 @@ export default {
   data() {
     return {
       startDate: new Date(),
-      offers: [
-        {
-          id: 1,
-          productname: "G502 HERO",
-          manufacturer: "Logitech",
-          description: "High Performance Gaming-Maus",
-          color: "schwarz",
-          retailprice: 89.99,
-          tier1: 79.99,
-          tier2: 69.99,
-          tier3: 59.99,
-          tier4: 49.99,
-          tier1pieces: 99,
-          tier2pieces: 199,
-          tier3pieces: 299,
-          tier4pieces: 399,
-          image: "https://picsum.photos/300/300",
-          url: "https://www.logitechg.com/de-de/products/gaming-mice/g502-hero-gaming-mouse.910-005470.html",
-          enddate: new Date("2024-06-05T23:59:59"),
-        },
-        {
-          id: 2,
-          productname: "Playstation Dualshock 4",
-          manufacturer: "Sony",
-          description: "",
-          color: "",
-          retailprice: 89.99,
-          tier1: 79.99,
-          tier2: 69.99,
-          tier3: 59.99,
-          tier4: 49.99,
-          tier1pieces: 99,
-          tier2pieces: 199,
-          tier3pieces: 299,
-          tier4pieces: 399,
-          image: "https://picsum.photos/300/300",
-          url: "",
-          enddate: new Date("2024-05-23T10:38:00"),
-        },
-        {
-          id: 3,
-          productname: "Xbox One Controller",
-          manufacturer: "Microsoft",
-          description: "",
-          color: "",
-          retailprice: 89.99,
-          tier1: 79.99,
-          tier2: 69.99,
-          tier3: 59.99,
-          tier4: 49.99,
-          tier1pieces: 99,
-          tier2pieces: 199,
-          tier3pieces: 299,
-          tier4pieces: 399,
-          image: "https://picsum.photos/300/300",
-          url: "",
-          enddate: new Date("2024-06-25T23:59:59"),
-        },
-      ],
+      offers: [],
     };
   },
+  created() {
+    this.fetchOffers();
+  },
   methods: {
+    async fetchOffers() {
+      try {
+        const response = await fetch("http://localhost:3001/offers");
+        const data = await response.json();
+        this.offers = data.map((item) => {
+          const endDateTimestamp = this.convertToTimestamp(item.endDate);
+          const endDate = new Date(endDateTimestamp);
+          return {
+            id: item.id,
+            productname: item.title,
+            manufacturer: item.manufacturer,
+            description: item.description,
+            retailprice: item.retailprice,
+            tier1: item.tiers[0] ? item.tiers[0].price : null,
+            tier2: item.tiers[1] ? item.tiers[1].price : null,
+            tier3: item.tiers[2] ? item.tiers[2].price : null,
+            tier4: item.tiers[3] ? item.tiers[3].price : null,
+            image: item.productImages[0] || "https://picsum.photos/300/300",
+            endDate: endDate,
+          };
+        });
+      } catch (error) {
+        console.error("Error fetching offers:", error);
+      }
+    },
+    convertToTimestamp(dateString) {
+      return new Date(dateString).getTime();
+    },
     isExpired(endDate) {
-      return new Date(endDate) < this.startDate;
+      return endDate < this.startDate.getTime();
     },
   },
 };
