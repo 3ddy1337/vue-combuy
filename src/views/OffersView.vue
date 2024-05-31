@@ -17,22 +17,12 @@
         <h3>{{ product.manufacturer + " " + product.productname }}</h3>
         <p>UVP: {{ product.retailprice }}€</p>
         <br />
-        <p>
-          {{ product.tier1 }}€ | Spare:
-          {{ Math.floor(product.retailprice - product.tier1) }}€
-        </p>
-        <p>
-          {{ product.tier2 }}€ | Spare:
-          {{ Math.floor(product.retailprice - product.tier2) }}€
-        </p>
-        <p>
-          {{ product.tier3 }}€ | Spare:
-          {{ Math.floor(product.retailprice - product.tier3) }}€
-        </p>
-        <p>
-          {{ product.tier4 }}€ | Spare:
-          {{ Math.floor(product.retailprice - product.tier4) }}€
-        </p>
+        <div v-for="(tier, index) in product.tiers" :key="index">
+          <p :class="getTierClass(index, product.currentTier)">
+            {{ tier.price }}€ | Spare:
+            {{ Math.floor(product.retailprice - tier.price) }}€
+          </p>
+        </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="40"
@@ -80,10 +70,8 @@ export default {
             manufacturer: item.manufacturer,
             description: item.description,
             retailprice: item.retailprice,
-            tier1: item.tiers[0] ? item.tiers[0].price : null,
-            tier2: item.tiers[1] ? item.tiers[1].price : null,
-            tier3: item.tiers[2] ? item.tiers[2].price : null,
-            tier4: item.tiers[3] ? item.tiers[3].price : null,
+            tiers: item.tiers,
+            currentTier: this.getCurrentTier(item.tiers, item.buyers),
             image: item.productImages[0] || "https://picsum.photos/300/300",
             endDate: endDate,
           };
@@ -97,6 +85,18 @@ export default {
     },
     isExpired(endDate) {
       return endDate < this.startDate.getTime();
+    },
+    getCurrentTier(tiers, buyers) {
+      let currentTier = -1;
+      tiers.forEach((tier, index) => {
+        if (buyers >= tier.quantity) {
+          currentTier = index;
+        }
+      });
+      return currentTier;
+    },
+    getTierClass(index, currentTier) {
+      return index === currentTier ? "highlight" : "crossed-out";
     },
   },
 };
@@ -161,5 +161,13 @@ svg {
 p {
   font-family: "Exo 2";
   color: black;
+}
+
+.highlight {
+  font-weight: bold;
+}
+.crossed-out {
+  text-decoration: line-through;
+  color: rgb(171, 171, 171);
 }
 </style>
