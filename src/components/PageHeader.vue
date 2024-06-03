@@ -104,7 +104,7 @@ p {
 }
 
 nav {
-  z-index: 1;
+  z-index: 100;
   position: absolute;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
   border-radius: 3px;
@@ -130,8 +130,4 @@ nav {
   text-decoration: none;
   color: black;
 }
-
-/* img {
-  scale: 0.1;
-} */
 </style>
