@@ -1,5 +1,6 @@
 <template>
-  <h2>ANGEBOTE</h2>
+  <h2>ANGEBOTE<button @click="sortOffers">Endet bald</button></h2>
+
   <div class="grid">
     <div class="container" v-for="product in offers" :key="product.id">
       <div class="card" :class="{ inactive: isExpired(product.endDate) }">
@@ -100,6 +101,9 @@ export default {
     getTierClass(index, currentTier) {
       return index === currentTier ? "highlight" : "crossed-out";
     },
+    sortOffers() {
+      this.offers.sort((a, b) => a.endDate - b.endDate);
+    },
   },
 };
 </script>
@@ -117,6 +121,7 @@ h2 {
   padding: 10px;
   text-align: center;
   margin: 10px;
+  position: relative;
 }
 
 .card {
@@ -172,6 +177,19 @@ p {
 .crossed-out {
   text-decoration: line-through;
   color: rgb(171, 171, 171);
+}
+
+button {
+  font-family: "Exo 2";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgb(209, 253, 255);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  border-color: none;
+  border: none;
+  padding: 5px;
 }
 
 @media screen and (min-width: 768px) {
