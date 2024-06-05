@@ -45,4 +45,10 @@ img {
   grid-template-columns: 1fr 1fr;
   align-items: center;
 }
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    max-width: 75ch;
+  }
+}
 </style>

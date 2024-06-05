@@ -1,44 +1,48 @@
 <template>
   <div class="wrapper">
-    <h2>Musthave</h2>
-    <p>
-      Hier kannst du deinen Wunschartikel anlegen. Nachdem wir deine Anfrage
-      geprüft haben, werden in der Kategorie "Musthave" die Artikel angezeigt,
-      die du dir wünschst.
-    </p>
+    <div class="inner-wrapper">
+      <h2>Musthave</h2>
+      <p>
+        Hier kannst du deinen Wunschartikel anlegen. Nachdem wir deine Anfrage
+        geprüft haben, werden in der Kategorie "Musthave" die Artikel angezeigt,
+        die du dir wünschst.
+      </p>
+    </div>
   </div>
   <form @submit.prevent="handleSubmit">
-    <label for="name">Produktname: </label>
-    <input type="text" id="name" v-model="form.name" name="name" required />
+    <div class="inner-wrapper">
+      <label for="name">Produktname: </label>
+      <input type="text" id="name" v-model="form.name" name="name" required />
 
-    <label for="manufacturer">Hersteller: </label>
-    <input
-      type="text"
-      id="manufacturer"
-      v-model="form.manufacturer"
-      name="manufacturer"
-      required
-    />
+      <label for="manufacturer">Hersteller: </label>
+      <input
+        type="text"
+        id="manufacturer"
+        v-model="form.manufacturer"
+        name="manufacturer"
+        required
+      />
 
-    <label for="ean">EAN: </label>
-    <input type="text" id="ean" v-model="form.ean" name="ean" />
+      <label for="ean">EAN: </label>
+      <input type="text" id="ean" v-model="form.ean" name="ean" />
 
-    <label for="color">Wunschfarbe: </label>
-    <input type="text" id="color" v-model="form.color" name="color" />
+      <label for="color">Wunschfarbe: </label>
+      <input type="text" id="color" v-model="form.color" name="color" />
 
-    <label for="manufacturerlink">Hersteller-Link: </label>
-    <input
-      type="text"
-      id="manufacturerlink"
-      v-model="form.manufacturerlink"
-      name="manufacturerlink"
-    />
+      <label for="manufacturerlink">Hersteller-Link: </label>
+      <input
+        type="text"
+        id="manufacturerlink"
+        v-model="form.manufacturerlink"
+        name="manufacturerlink"
+      />
 
-    <label for="message">Nachricht:</label>
-    <textarea id="message" v-model="form.message" name="message"></textarea>
+      <label for="message">Nachricht:</label>
+      <textarea id="message" v-model="form.message" name="message"></textarea>
 
-    <div></div>
-    <button type="submit">Absenden</button>
+      <div></div>
+      <button type="submit">Absenden</button>
+    </div>
   </form>
 </template>
 
@@ -111,16 +115,19 @@ export default {
   margin: 10px;
 }
 
-form {
+form > .inner-wrapper {
   font-family: "Exo 2";
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 10px;
-  margin: 10px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   background-color: #f1f1f1;
   padding: 10px;
+}
+
+form {
+  margin: 10px;
 }
 
 button {
@@ -150,5 +157,11 @@ input {
 textarea {
   width: 180px;
   height: 42px;
+}
+
+@media screen and (min-width: 768px) {
+  .inner-wrapper {
+    max-width: 60ch;
+  }
 }
 </style>

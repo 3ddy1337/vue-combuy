@@ -20,7 +20,7 @@
           ><p>Hier geht es zu unseren <span>Angeboten</span>!</p></RouterLink
         >
       </div>
-      <div><RouterLink class="router" to="/musthave"
+      <div><RouterLink class="router" to="/musthave-inquiry"
       ><p>Du möchtest einen Artikel anfragen?<br>Frage hier dein <span>Musthave</span> Produkt an!</p></RouterLink></div>
   <!-- <HomeComponent /> -->
 </template>
@@ -55,5 +55,11 @@ div {
   padding: 10px;
   text-align: center;
   margin: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  p {
+    max-width: 60ch;
+  }
 }
 </style>
